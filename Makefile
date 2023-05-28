@@ -1,4 +1,4 @@
-# Установка npm пакета
+# Установка npm пакетов
 install:
 		npm ci
 
@@ -9,3 +9,7 @@ gendiff:
 # Публикация npm пакета
 publish:
 		npm publish --dry-run
+
+# Запуск линтера
+lint:
+		npx eslint .

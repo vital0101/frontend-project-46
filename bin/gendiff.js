@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { getGenDiff } from '../src/index.js';
+import getGenDiff from '../src/index.js';
 
 const program = new Command();
 
@@ -13,6 +13,6 @@ program
   .arguments('<filepath1>', 'path to file1')
   .arguments('<filepath1>', 'path to file2')
   .action((filepath1, filepath2) => {
-    console.log(getGenDiff(filepath1, filepath2));
+    getGenDiff(filepath1, filepath2);
   })
   .parse(process.argv);
