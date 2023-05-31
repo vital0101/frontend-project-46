@@ -11,7 +11,7 @@ program
   .option('-f, --format <type>', 'output format')
   // .arguments('<filepath1, <filepath2')
   .arguments('<filepath1>', 'path to file1')
-  .arguments('<filepath1>', 'path to file2')
+  .arguments('<filepath2>', 'path to file2')
   .action((filepath1, filepath2) => {
     getGenDiff(filepath1, filepath2);
   })
