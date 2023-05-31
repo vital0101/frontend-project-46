@@ -10,23 +10,25 @@ const genDiff = (data1, data2) => {
   // коллекция неповторяющихся ключей из двух объектов
   const keys = _.union(_.keys(data1), _.keys(data2));
   // const keys = Object.keys({ ...data1, ...data2 }).sort();
+  const sortKeys = _.sortBy(keys);
 
-  let result = '{';
+  const properties = [];
 
-  for (const key of keys) {
+  sortKeys.forEach((key) => {
     if (!Object.hasOwn(data1, key)) {
-      result += `\n  + ${key}: ${data2[key]}`;
+      properties.push(`  + ${key}: ${data2[key]}`);
     } else if (!Object.hasOwn(data2, key)) {
-      result += `\n  - ${key}: ${data1[key]}`;
+      properties.push(`  - ${key}: ${data1[key]}`);
     } else if (data1[key] !== data2[key]) {
-      result += `\n  - ${key}: ${data1[key]}`;
-      result += `\n  + ${key}: ${data2[key]}`;
+      properties.push(`  - ${key}: ${data1[key]}`);
+      properties.push(`  + ${key}: ${data2[key]}`);
     } else {
-      result += `\n    ${key}: ${data2[key]}`;
+      properties.push(`    ${key}: ${data2[key]}`);
     }
-  }
-  result += '\n}';
-  return console.log(result);
+  });
+  const result = `{\n${properties.join('\n')}\n}`;
+  console.log(result);
+  return result;
 };
 
 const getGenDiff = (filepath1, filepath2) => {
