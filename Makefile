@@ -17,3 +17,7 @@ lint:
 # Запуск тестов
 test:
 		npx jest
+
+# Команда покрытия
+coverage:
+		npm run coverage
