@@ -13,3 +13,7 @@ publish:
 # Запуск линтера
 lint:
 		npx eslint .
+
+# Запуск тестов
+test:
+		npx jest
