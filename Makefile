@@ -19,5 +19,5 @@ test:
 		npx jest
 
 # Команда покрытия
-coverage:
+test-coverage:
 		npm run coverage
