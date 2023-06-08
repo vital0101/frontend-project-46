@@ -1,47 +1,47 @@
-# # Установка npm пакетов
-# install:
-# 		npm ci
-
-# # Запуск программы gendiff
-# gendiff:
-# 		node bin/gendiff.js
-
-# # Публикация npm пакета
-# publish:
-# 		npm publish --dry-run
-
-# # Запуск линтера
-# lint:
-# 		npx eslint .
-
-# # Запуск тестов
-# test:
-# 		npx jest
-
-# # Команда покрытия
-# test-coverage:
-# 		npm run coverage
-
+# Установка npm пакетов
 install:
-	install-deps
-	npx simple-git-hooks
+		npm ci
 
-run:
-	bin/nodejs-package.js 10
+# Запуск программы gendiff
+gendiff:
+		node bin/gendiff.js
 
-install-deps:
-	npm ci
-
-test:
-	npm test
-
-test-coverage:
-	npm test -- --coverage --coverageProvider=v8
-
-lint:
-	npx eslint .
-
+# Публикация npm пакета
 publish:
-	npm publish
+		npm publish --dry-run
 
-.PHONY: test
+# Запуск линтера
+lint:
+		npx eslint .
+
+# Запуск тестов
+test:
+		npm test
+
+# Команда покрытия
+test-coverage:
+		npx jest --coverage
+
+# install:
+# 	install-deps
+# 	npx simple-git-hooks
+
+# run:
+# 	bin/nodejs-package.js 10
+
+# install-deps:
+# 	npm ci
+
+# test:
+# 	npm test
+
+# test-coverage:
+# 	npm test -- --coverage --coverageProvider=v8
+
+# lint:
+# 	npx eslint .
+
+# publish:
+# 	npm publish
+
+# .PHONY: test
