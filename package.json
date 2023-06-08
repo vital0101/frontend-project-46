@@ -2,6 +2,10 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
   "description": "Compares two configuration files and shows a difference",
   "main": "index.js",
   "bin": {
@@ -12,6 +16,9 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "repository": {
     "type": "git",
