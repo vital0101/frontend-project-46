@@ -15,11 +15,11 @@ const getGenDiff = (filePath1, filePath2) => {
   const extensionOfFile1 = getTypeOfFile(pathOfFile1);
   const extensionOfFile2 = getTypeOfFile(pathOfFile2);
   // get data from file
-  const getDataFile1 = getDataFile(filePath1);
-  const getDataFile2 = getDataFile(filePath2);
+  const dataFile1 = getDataFile(filePath1);
+  const dataFile2 = getDataFile(filePath2);
   // трансформируем данные в объект
-  const dataParse1 = parser(getDataFile1, extensionOfFile1);
-  const dataParse2 = parser(getDataFile2, extensionOfFile2);
+  const dataParse1 = parser(dataFile1, extensionOfFile1);
+  const dataParse2 = parser(dataFile2, extensionOfFile2);
   // передаем объект в функцию для его обработки
   return genDiff(dataParse1, dataParse2);
 };
