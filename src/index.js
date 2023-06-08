@@ -1,41 +1,26 @@
 import fs from 'fs';
-import _ from 'lodash';
+import path from 'path';
+import parser from './parsers.js';
+import genDiff from './formfatter.js';
 
-const getFile = (filepath) => fs.readFileSync(filepath, 'utf-8');
+const getPathOfFile = (filePath) => path.resolve(filePath);
+const getTypeOfFile = (filePath) => path.extname(filePath);
+const getDataFile = (filePath) => fs.readFileSync(filePath, 'utf-8');
 
-const getParseFile = (file) => JSON.parse(file);
-
-//  параметрами передаются распарсенные строки в объекты
-const genDiff = (data1, data2) => {
-  // коллекция неповторяющихся ключей из двух объектов
-  const keys = _.union(_.keys(data1), _.keys(data2));
-  // const keys = Object.keys({ ...data1, ...data2 }).sort();
-  const sortKeys = _.sortBy(keys);
-
-  const properties = [];
-
-  sortKeys.forEach((key) => {
-    if (!Object.hasOwn(data1, key)) {
-      properties.push(`  + ${key}: ${data2[key]}`);
-    } else if (!Object.hasOwn(data2, key)) {
-      properties.push(`  - ${key}: ${data1[key]}`);
-    } else if (data1[key] !== data2[key]) {
-      properties.push(`  - ${key}: ${data1[key]}`);
-      properties.push(`  + ${key}: ${data2[key]}`);
-    } else {
-      properties.push(`    ${key}: ${data2[key]}`);
-    }
-  });
-  const result = `{\n${properties.join('\n')}\n}`;
-  console.log(result);
-  return result;
-};
-
-const getGenDiff = (filepath1, filepath2) => {
-  const data1 = getFile(filepath1);
-  const data2 = getFile(filepath2);
-  const dataParse1 = getParseFile(data1);
-  const dataParse2 = getParseFile(data2);
+const getGenDiff = (filePath1, filePath2) => {
+  // get path of file
+  const pathOfFile1 = getPathOfFile(filePath1);
+  const pathOfFile2 = getPathOfFile(filePath2);
+  // get extension of file
+  const extensionOfFile1 = getTypeOfFile(pathOfFile1);
+  const extensionOfFile2 = getTypeOfFile(pathOfFile2);
+  // get data from file
+  const getDataFile1 = getDataFile(filePath1);
+  const getDataFile2 = getDataFile(filePath2);
+  // трансформируем данные в объект
+  const dataParse1 = parser(getDataFile1, extensionOfFile1);
+  const dataParse2 = parser(getDataFile2, extensionOfFile2);
+  // передаем объект в функцию для его обработки
   return genDiff(dataParse1, dataParse2);
 };
 
