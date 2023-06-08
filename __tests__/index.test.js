@@ -18,9 +18,9 @@ test('generate difference between JSONs files', () => {
   expect(genDiff(getPath('file1.json'), getPath('file2.json'))).toEqual(result);
 });
 
-// test('generate difference between YML/YAMLs files', () => {
-//   expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'))).toEqual(result);
-// });
+test('generate difference between YML/YAMLs files', () => {
+  expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'))).toEqual(result);
+});
 
 // test('generate difference between JSON and YML/YAML files', () => {
 //   expect(genDiff(getPath('file1.json'), getPath('file2.yaml'))).toEqual(result);
