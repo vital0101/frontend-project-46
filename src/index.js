@@ -1,27 +1,28 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parsers.js';
-import genDiff from './formfatter.js';
+import getDiff from './getDiff.js';
+import getFormatedFile from './formatters/index.js';
 
 const getPathOfFile = (filePath) => path.resolve(filePath);
 const getTypeOfFile = (filePath) => path.extname(filePath);
 const getDataFile = (filePath) => fs.readFileSync(filePath, 'utf-8');
 
-const getGenDiff = (filePath1, filePath2) => {
-  // get path of file
+const getGenDiff = (filePath1, filePath2, format = 'stylish') => {
   const pathOfFile1 = getPathOfFile(filePath1);
   const pathOfFile2 = getPathOfFile(filePath2);
-  // get extension of file
+
   const extensionOfFile1 = getTypeOfFile(pathOfFile1);
   const extensionOfFile2 = getTypeOfFile(pathOfFile2);
-  // get data from file
+
   const dataFile1 = getDataFile(filePath1);
   const dataFile2 = getDataFile(filePath2);
-  // трансформируем данные в объект
+
   const dataParse1 = parser(dataFile1, extensionOfFile1);
   const dataParse2 = parser(dataFile2, extensionOfFile2);
-  // передаем объект в функцию для его обработки
-  return genDiff(dataParse1, dataParse2);
+
+  const tree = getDiff(dataParse1, dataParse2);
+  return getFormatedFile(tree, format);
 };
 
 export default getGenDiff;
