@@ -1,10 +1,13 @@
 import _ from 'lodash';
 
 const stringify = (value) => {
-  if (!_.isObject(value) || _.isNull(value)) {
-    return value;
+  if (_.isPlainObject(value)) {
+    return '[complex value]';
   }
-  return '[complex value]';
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
+  return value;
 };
 
 const plain = (tree) => {
