@@ -31,7 +31,6 @@ const stylish = (tree) => {
           return new Error(`Unknown type ${item.type}`);
       }
     });
-    // return ['{', ...result, `${getCurrentIndent(depth)}}`].join('\n');
     return ['{', ...result, `${getClosingIndent(depth)}}`].join('\n');
   };
   return iter(tree, 1);

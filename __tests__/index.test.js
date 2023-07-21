@@ -10,8 +10,6 @@ const __dirname = dirname(__filename);
 const getPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getPath(filename), 'utf-8');
 
-// const resultPlain = readFile('expectedPlain');
-// const resultJson = readFile('expectedJson');
 const resultStylish = readFile('expectedStylish.txt');
 
 test('generate difference between JSONs files', () => {
