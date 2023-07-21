@@ -15,9 +15,9 @@ const plain = (tree) => {
         const accPath = path ? `${path}.${item.key}` : `${item.key}`;
         switch (item.type) {
           case 'added':
-            return `Property '${accPath}' was added with value: '${stringify(item.value)}'`;
+            return `Property '${accPath}' was added with value: ${stringify(item.value)}`;
           case 'changed':
-            return `Property '${accPath}' was updated. From '${stringify(item.value1)}' to '${stringify(item.value2)}'`;
+            return `Property '${accPath}' was updated. From ${stringify(item.value1)} to ${stringify(item.value2)}`;
           case 'deleted':
             return `Property '${accPath}' was removed`;
           case 'nested':
