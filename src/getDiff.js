@@ -4,7 +4,7 @@ const getDiff = (data1, data2) => {
   const key1 = Object.keys(data1);
   const key2 = Object.keys(data2);
   const keys = [...key1, ...key2];
-  const uniqueKeys = Array.from(new Set(keys)).sort();
+  const uniqueKeys = _.sortBy(Array.from(new Set(keys)));
 
   const result = uniqueKeys.map((key) => {
     if (!_.has(data1, key)) {
