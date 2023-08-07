@@ -11,30 +11,17 @@ const getPath = (filename) => path.join(__dirname, '..', '__fixtures__', filenam
 const readFile = (filename) => fs.readFileSync(getPath(filename), 'utf-8');
 
 const resultStylish = readFile('expectedStylish.txt');
+const resultPlain = readFile('expectedPlain.txt');
+const resultJson = readFile('expectedJson.txt');
 
-test('generate difference between JSONs files', () => {
-  const actual1 = genDiff(
-    getPath('file1.json'),
-    getPath('file2.json'),
-    'stylish',
-  );
-  expect(actual1).toEqual(resultStylish);
-});
+const formatsFiles = ['json', 'yml', 'yaml'];
 
-test('generate difference between YML/YAMLs files', () => {
-  const actual2 = genDiff(
-    getPath('file1.yml'),
-    getPath('file2.yaml'),
-    'stylish',
-  );
-  expect(actual2).toEqual(resultStylish);
-});
+test.each(formatsFiles)('diff formats of files (.json .yaml .yml)', (extension) => {
+  const fileName1 = `${process.cwd()}/__fixtures__/file1.${extension}`;
+  const fileName2 = `${process.cwd()}/__fixtures__/file2.${extension}`;
 
-test('generate difference between JSON and YML/YAML files', () => {
-  const actual3 = genDiff(
-    getPath('file1.json'),
-    getPath('file2.yaml'),
-    'stylish',
-  );
-  expect(actual3).toEqual(resultStylish);
+  expect(genDiff(fileName1, fileName2, 'stylish')).toEqual(resultStylish);
+  expect(genDiff(fileName1, fileName2, 'plain')).toEqual(resultPlain);
+  expect(genDiff(fileName1, fileName2, 'json')).toEqual(resultJson);
+  expect(genDiff(fileName1, fileName2)).toEqual(resultStylish);
 });
