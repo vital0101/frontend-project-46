@@ -3,6 +3,10 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d013af332e97d3eaad15/test_coverage)](https://codeclimate.com/github/vital0101/frontend-project-46/test_coverage)
 [![Node CI](https://github.com/vital0101/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/vital0101/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)
 
+## Minimum requirements
+
+Node version v18.14.0
+
 ### Setup  
 
 make install

@@ -21,8 +21,11 @@ const stylish = (tree) => {
           return `${getCurrentIndent(depth)}+ ${item.key}: ${stringify(item.value, depth + 1)}`;
         case 'unchanged':
           return `${getCurrentIndent(depth)}  ${item.key}: ${stringify(item.value, depth + 1)}`;
-        case 'changed':
-          return `${getCurrentIndent(depth)}- ${item.key}: ${stringify(item.value1, depth + 1)}\n${getCurrentIndent(depth)}+ ${item.key}: ${stringify(item.value2, depth + 1)}`;
+        case 'changed': {
+          const valueStr1 = `${getCurrentIndent(depth)}- ${item.key}: ${stringify(item.value1, depth + 1)}`;
+          const valueStr2 = `${getCurrentIndent(depth)}+ ${item.key}: ${stringify(item.value2, depth + 1)}`;
+          return `${valueStr1}\n${valueStr2}`;
+        }
         case 'deleted':
           return `${getCurrentIndent(depth)}- ${item.key}: ${stringify(item.value, depth + 1)}`;
         case 'nested':

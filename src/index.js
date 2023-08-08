@@ -5,7 +5,7 @@ import getTree from './getTree.js';
 import getFormatedFile from './formatters/index.js';
 
 const getFilePath = (filePath) => path.resolve(filePath);
-const getFileType = (filePath) => path.extname(filePath);
+const getFileType = (filePath) => path.extname(filePath).slice(1);
 const getFileData = (filePath) => fs.readFileSync(filePath, 'utf-8');
 
 const getGenDiff = (filepath1, filepath2, format = 'stylish') => {

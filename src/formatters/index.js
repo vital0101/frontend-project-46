@@ -2,22 +2,16 @@ import plain from './plain.js';
 import stylish from './stylish.js';
 
 const getFormatedFile = (tree, format = 'stylish') => {
-  const formatType = {
-    stylish: 'stylish',
-    plain: 'plain',
-    json: 'json',
-  };
-
-  if (format === formatType.json) {
-    return JSON.stringify(tree);
+  switch (format) {
+    case 'stylish':
+      return stylish(tree);
+    case 'plain':
+      return plain(tree);
+    case 'json':
+      return JSON.stringify(tree);
+    default:
+      throw new Error(`Type '${format}' is not supported`);
   }
-  if (format === formatType.plain) {
-    return plain(tree);
-  }
-  if (format === formatType.stylish) {
-    return stylish(tree);
-  }
-  return new Error(`Type '${format}' is not supported`);
 };
 
 export default getFormatedFile;
